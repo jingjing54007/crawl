@@ -409,20 +409,21 @@ void spawn_random_monsters()
         mgen_data mg(WANDERING_MONSTER);
         mg.proximity = prox;
         mg.foe = (player_on_orb_run()) ? MHITYOU : MHITNOT;
-        mg.is_spawn = true;
+        // Don't count orb run spawns in the xp_info dump
+        mg.is_spawn = !player_on_orb_run();
         mons_place(mg);
         viewwindow();
         return;
     }
 
     mgen_data mg(WANDERING_MONSTER);
+    mg.is_spawn = true;
     if (player_in_branch(BRANCH_PANDEMONIUM)
         && !env.properties.exists("vault_mon_weights")
         && !one_chance_in(40))
     {
         mg.cls = env.mons_alloc[random2(PAN_MONS_ALLOC)];
         mg.flags |= MG_PERMIT_BANDS;
-        mg.is_spawn = true;
     }
 
     mons_place(mg);
