@@ -457,7 +457,7 @@ static string _sdump_level_xp_info(LevelXPInfo xp_info, string name = "")
     f = TO_PERCENT(xp_info.spawn_count, total_count);
 
     out =
-        make_stringf("%14s | %7d | %7d | %5.1f | %7d | %7d | %13.1f\n",
+        make_stringf("%14s | %7d | %7d | %3.1f | %7d | %7d | %3.1f\n",
                      name.c_str(), xp_info.spawn_xp, xp_info.generated_xp,
                      c, xp_info.spawn_count, xp_info.generated_count, f);
 
@@ -519,20 +519,20 @@ static void _sdump_xp_by_level(dump_params &par)
 " F = Spawn count percentage of total count\n\n";
 
     text += "               ";
-    text += "    A       B       C       D       E               F\n";
+    text += "     A         B        C        D         E        F\n";
     text += "               ";
-    text += "+-------+-------+-------+-------+-------+----------------------\n";
+    text += "+---------+---------+-------+---------+---------+-------\n";
 
     text += _sdump_level_xp_info(you.global_xp_info, "Total");
 
     text += "               ";
-    text += "+-------+-------+-------+-------+-------+----------------------\n";
+    text += "+---------+---------+-------+---------+---------+-------\n";
 
     for (const LevelXPInfo &mi : all_info)
         text += _sdump_level_xp_info(mi);
 
     text += "               ";
-    text += "+-------+-------+-------+-------+------------------------------\n";
+    text += "+---------+---------+-------+---------+---------+-------\n";
 
     text += "\n";
 }
