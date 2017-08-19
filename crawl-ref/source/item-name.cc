@@ -1855,7 +1855,6 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
         switch (item_typ)
         {
         case FOOD_RATION: buff << "ration"; break;
-        case FOOD_ROYAL_JELLY: buff << "royal jelly"; break;
         case FOOD_FRUIT: buff << "fruit"; break;
         case FOOD_CHUNK:
             switch (determine_chunk_effect(*this))
@@ -1873,7 +1872,6 @@ string item_def::name_aux(description_level_type desc, bool terse, bool ident,
             buff << "chunk of flesh";
             break;
 #if TAG_MAJOR_VERSION == 34
-        case FOOD_BREAD_RATION: buff << "buggy ration"; break;
         default: buff << "removed food"; break;
 #endif
         }
@@ -2379,18 +2377,16 @@ public:
                 name = "chunks";
                 break;
             case FOOD_RATION:
-            case FOOD_BREAD_RATION:
                 name = "rations";
                 break;
-#if TAG_MAJOR_VERSION == 34
-            default:
-#endif
             case FOOD_FRUIT:
                 name = "fruit";
                 break;
-            case FOOD_ROYAL_JELLY:
-                name = "royal jellies";
+#if TAG_MAJOR_VERSION == 34
+            default:
+                name = "removed food";
                 break;
+#endif
             }
         }
         else if (item->base_type == OBJ_MISCELLANY)

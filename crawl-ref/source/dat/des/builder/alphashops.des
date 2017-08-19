@@ -145,9 +145,9 @@
 
       elseif s == "R" then i = { "amulet of rage", "amulet of reflection",
        "amulet of regeneration", "rapier", "ring of resist corrosion",
-       "royal jelly", "potion of resistance", "scroll of recharging", "robe",
+       "ration", "potion of resistance", "scroll of recharging", "robe",
        "ring mail", "scroll of random uselessness", "scroll of remove curse",
-       "wand of random effects", "ration" }
+       "wand of random effects" }
 
       elseif s == "S" then i = { "scarf", "scimitar", "short sword",
        "sling bullet", "scale mail", "book of summonings", "book of the sky",

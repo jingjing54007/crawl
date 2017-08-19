@@ -3802,7 +3802,6 @@ static void tag_read_you_items(reader &th)
         const int oldstate = you.force_autopickup[OBJ_FOOD][NUM_FOODS];
         you.force_autopickup[OBJ_FOOD][FOOD_RATION] = oldstate;
         you.force_autopickup[OBJ_FOOD][FOOD_FRUIT] = oldstate;
-        you.force_autopickup[OBJ_FOOD][FOOD_ROYAL_JELLY] = oldstate;
 
         you.force_autopickup[OBJ_BOOKS][BOOK_MANUAL] =
             you.force_autopickup[OBJ_BOOKS][NUM_BOOKS];
@@ -4545,7 +4544,7 @@ void unmarshallItem(reader &th, item_def &item)
         if (item.base_type == OBJ_FOOD && (item.sub_type == FOOD_UNUSED
                                            || item.sub_type == FOOD_AMBROSIA))
         {
-            item.sub_type = FOOD_ROYAL_JELLY;
+            item.sub_type = FOOD_ROYAL_JELLY; // will be fixed up later
         }
     }
 
@@ -4581,7 +4580,7 @@ void unmarshallItem(reader &th, item_def &item)
             if (item.sub_type == FOOD_BEEF_JERKY
                 || item.sub_type == FOOD_PIZZA)
             {
-                item.sub_type = FOOD_ROYAL_JELLY;
+                item.sub_type = FOOD_ROYAL_JELLY; // will be fixed up later
             }
         }
     }
@@ -4781,6 +4780,12 @@ void unmarshallItem(reader &th, item_def &item)
 
     if (item.is_type(OBJ_FOOD, FOOD_BREAD_RATION))
         item.sub_type = FOOD_RATION;
+    else if (item.is_type(OBJ_FOOD, FOOD_ROYAL_JELLY))
+    {
+   
+        item.sub_type = FOOD_RATION;
+        item.quantity = max(1, div_rand_round(item.quantity, 3));
+    }
 #endif
 
     if (is_unrandom_artefact(item))
