@@ -39,3 +39,29 @@ public:
     PlaceInfo operator + (const PlaceInfo &other) const;
     PlaceInfo operator - (const PlaceInfo &other) const;
 };
+
+class LevelXPInfo
+{
+public:
+    level_id level;
+
+    unsigned int spawn_xp;
+    unsigned int spawn_count;
+    unsigned int generated_xp;
+    unsigned int generated_count;
+
+public:
+    LevelXPInfo();
+    LevelXPInfo(const level_id &level);
+
+    bool is_global() const;
+
+    void assert_validity() const;
+
+    const string short_name() const;
+
+    const LevelXPInfo &operator += (const LevelXPInfo &other);
+    const LevelXPInfo &operator -= (const LevelXPInfo &other);
+    LevelXPInfo operator + (const LevelXPInfo &other) const;
+    LevelXPInfo operator - (const LevelXPInfo &other) const;
+};

@@ -409,6 +409,7 @@ void spawn_random_monsters()
         mgen_data mg(WANDERING_MONSTER);
         mg.proximity = prox;
         mg.foe = (player_on_orb_run()) ? MHITYOU : MHITNOT;
+        mg.is_spawn = true;
         mons_place(mg);
         viewwindow();
         return;
@@ -421,6 +422,7 @@ void spawn_random_monsters()
     {
         mg.cls = env.mons_alloc[random2(PAN_MONS_ALLOC)];
         mg.flags |= MG_PERMIT_BANDS;
+        mg.is_spawn = true;
     }
 
     mons_place(mg);
@@ -1257,6 +1259,7 @@ static monster* _place_monster_aux(const mgen_data &mg, const monster *leader,
     mon->set_new_monster_id();
     mon->type         = mg.cls;
     mon->base_monster = mg.base_type;
+    mon->is_spawn     = mg.is_spawn;
 
     // Set pos and link monster into monster grid.
     if (!dont_place && !mon->move_to_pos(fpos))
