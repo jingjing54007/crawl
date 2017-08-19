@@ -1746,6 +1746,7 @@ static void marshallLevelXPInfo(writer &th, LevelXPInfo xp_info)
     marshallInt(th, xp_info.generated_xp);
     marshallInt(th, xp_info.spawn_count);
     marshallInt(th, xp_info.generated_count);
+    marshallInt(th, xp_info.turns);
 }
 
 static void tag_construct_you_dungeon(writer &th)
@@ -3902,6 +3903,8 @@ static LevelXPInfo unmarshallLevelXPInfo(reader &th)
 
     xp_info.spawn_count     = unmarshallInt(th);
     xp_info.generated_count = unmarshallInt(th);
+
+    xp_info.turns           = unmarshallInt(th);
 
     return xp_info;
 }

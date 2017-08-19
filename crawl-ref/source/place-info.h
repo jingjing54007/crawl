@@ -49,6 +49,7 @@ public:
     unsigned int spawn_count;
     unsigned int generated_xp;
     unsigned int generated_count;
+    unsigned int turns;
 
 public:
     LevelXPInfo();

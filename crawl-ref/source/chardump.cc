@@ -457,9 +457,10 @@ static string _sdump_level_xp_info(LevelXPInfo xp_info, string name = "")
     f = TO_PERCENT(xp_info.spawn_count, total_count);
 
     out =
-        make_stringf("%14s | %7d | %7d | %3.1f | %7d | %7d | %3.1f\n",
+        make_stringf("%14s | %7d | %7d | %5.1f | %7d | %7d | %5.1f | %7d\n",
                      name.c_str(), xp_info.spawn_xp, xp_info.generated_xp,
-                     c, xp_info.spawn_count, xp_info.generated_count, f);
+                     c, xp_info.spawn_count, xp_info.generated_count, f,
+                     xp_info.turns);
 
     out = replace_all(out, " nan ", " N/A ");
 
@@ -515,24 +516,25 @@ static void _sdump_xp_by_level(dump_params &par)
 " B = Non-spawn XP\n"
 " C = Spawn XP percentage of total XP\n"
 " D = Spawn monster count\n"
-" E = Non-spawn monster count\n\n"
-" F = Spawn count percentage of total count\n\n";
+" E = Non-spawn monster count\n"
+" F = Spawn count percentage of total count\n"
+" G = Total turns spent on level\n\n";
 
     text += "               ";
-    text += "     A         B        C        D         E        F\n";
+    text += "     A         B        C        D         E        F        G    \n";
     text += "               ";
-    text += "+---------+---------+-------+---------+---------+-------\n";
+    text += "+---------+---------+-------+---------+---------+-------+---------\n";
 
     text += _sdump_level_xp_info(you.global_xp_info, "Total");
 
     text += "               ";
-    text += "+---------+---------+-------+---------+---------+-------\n";
+    text += "+---------+---------+-------+---------+---------+-------+---------\n";
 
     for (const LevelXPInfo &mi : all_info)
         text += _sdump_level_xp_info(mi);
 
     text += "               ";
-    text += "+---------+---------+-------+---------+---------+-------\n";
+    text += "+---------+---------+-------+---------+---------+-------+---------\n";
 
     text += "\n";
 }

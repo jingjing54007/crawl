@@ -165,13 +165,13 @@ vector<PlaceInfo> player::get_all_place_info(bool visited_only,
 
 LevelXPInfo::LevelXPInfo()
     : level(level_id(GLOBAL_BRANCH_INFO, -1)), spawn_xp(0), spawn_count(0),
-      generated_xp(0), generated_count(0)
+      generated_xp(0), generated_count(0), turns(0)
 {
 }
 
 LevelXPInfo::LevelXPInfo(const level_id &lev)
     : level(lev), spawn_xp(0), spawn_count(0), generated_xp(0),
-      generated_count(0)
+      generated_count(0), turns(0)
 {
 }
 
@@ -197,6 +197,7 @@ const LevelXPInfo &LevelXPInfo::operator += (const LevelXPInfo &other)
     spawn_count += other.spawn_count;
     generated_xp += other.generated_xp;
     generated_count += other.generated_count;
+    turns += other.turns;
 
     return *this;
 }
@@ -207,6 +208,7 @@ const LevelXPInfo &LevelXPInfo::operator -= (const LevelXPInfo &other)
     spawn_count -= other.spawn_count;
     generated_xp -= other.generated_xp;
     generated_count -= other.generated_count;
+    turns -= other.turns;
 
     return *this;
 }
